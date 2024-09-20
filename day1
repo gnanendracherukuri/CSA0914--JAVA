@@ -1,0 +1,63 @@
+// Interface with arithmetic methods
+interface Calculator {
+    int add(int a, int b);
+    int sub(int a, int b);
+    int mul(int a, int b);
+    double div(int a, int b);
+}
+
+// Implementing the Calculator interface
+class BasicCalculator implements Calculator {
+
+    // Method to add two numbers
+    @Override
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method to subtract two numbers
+    @Override
+    public int sub(int a, int b) {
+        return a - b;
+    }
+
+    // Method to multiply two numbers
+    @Override
+    public int mul(int a, int b) {
+        return a * b;
+    }
+
+    // Method to divide two numbers
+    @Override
+    public double div(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero is not allowed.");
+        }
+        return (double) a / b;
+    }
+}
+
+// Main class to test the Calculator
+public class Main {
+    public static void main(String[] args) {
+        // Creating an instance of BasicCalculator
+        Calculator calc = new BasicCalculator();
+
+        // Test values
+        int a = 10;
+        int b = 5;
+
+        // Using the methods
+        System.out.println("Addition: " + calc.add(a, b));       // Expected output: 15
+        System.out.println("Subtraction: " + calc.sub(a, b));    // Expected output: 5
+        System.out.println("Multiplication: " + calc.mul(a, b)); // Expected output: 50
+        System.out.println("Division: " + calc.div(a, b));       // Expected output: 2.0
+
+        // Testing division by zero
+        try {
+            System.out.println("Division by zero test: " + calc.div(a, 0)); // Expected output: ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
